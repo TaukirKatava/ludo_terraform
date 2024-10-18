@@ -1,7 +1,7 @@
-variable "ami_ids" {
-    type = map(string)
+# variable "ami_ids" {
+#     type = map(string)
   
-}
+# }
 
 variable "instance_data" {
     type = map
@@ -25,6 +25,11 @@ variable "pem_file" {
 }
 
 variable "ec2_sg_id" {
+    type = string
+  
+}
+
+variable "ubuntu_ami" {
     type = string
   
 }

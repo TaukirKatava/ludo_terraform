@@ -42,3 +42,7 @@ variable "private-subnet-1a-id" {
 variable "private-subnet-1b-id" {
     type = string
 }
+
+variable "public-subnet-1a-id" {
+  type = string
+}

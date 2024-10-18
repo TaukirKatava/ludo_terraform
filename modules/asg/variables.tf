@@ -18,6 +18,6 @@ variable "tg-arn" {
     type = map
 }
 
-# variable "lt_latest_version" {
-#   type = map
-# }
+variable "lt_latest_version" {
+  type = map
+}

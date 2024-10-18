@@ -55,31 +55,58 @@ resource "aws_security_group" "sg" {
   }
 }
 
-
-resource "aws_instance" "ec2" {
+resource "aws_instance" "bastion-host-ec2" {
   ami = data.aws_ami.myami.id
-  for_each = var.instance_data
-  instance_type = each.value
-  subnet_id = var.private-subnet-1a-id
+  instance_type = "t2.micro"
+  subnet_id = var.public-subnet-1a-id
   key_name = var.pem_file
   vpc_security_group_ids = [ aws_security_group.sg.id ]
   iam_instance_profile = var.iam_instance_profile_name
   tags = {
-    "Name" = "${each.key}-${var.project_name}-prod"
+    "Name" = "bastionhost-instance"
     "terraform" = "yes"
-    "Mode" = "${each.key}"
+    "Mode" = "common"
     "ManagedBy" = "Yudiz"
   }
   root_block_device {
-    volume_type           = var.volume_type
-    volume_size           = var.volume_size
+    volume_type           = "gp3"
+    volume_size           = 10
     delete_on_termination = true
   }
 
-  depends_on = [ aws_security_group.sg ]
-  user_data = "${file("./stag_scripts/stag_${each.key}.sh")}"
+  # depends_on = [ aws_security_group.sg ]
+  # user_data = "${file("./stag_scripts/stag_${each.key}.sh")}"
 
-  lifecycle {
-    ignore_changes = [ user_data ]
-  }
+  # lifecycle {
+  #   ignore_changes = [ user_data ]
+  # }
 }
+
+
+# resource "aws_instance" "ec2" {
+#   ami = data.aws_ami.myami.id
+#   for_each = var.instance_data
+#   instance_type = each.value
+#   subnet_id = var.private-subnet-1a-id
+#   key_name = var.pem_file
+#   vpc_security_group_ids = [ aws_security_group.sg.id ]
+#   iam_instance_profile = var.iam_instance_profile_name
+#   tags = {
+#     "Name" = "${each.key}-${var.project_name}-prod"
+#     "terraform" = "yes"
+#     "Mode" = "${each.key}"
+#     "ManagedBy" = "Yudiz"
+#   }
+#   root_block_device {
+#     volume_type           = var.volume_type
+#     volume_size           = var.volume_size
+#     delete_on_termination = true
+#   }
+
+#   # depends_on = [ aws_security_group.sg ]
+#   user_data = "${file("./stag_scripts/stag_${each.key}.sh")}"
+
+#   lifecycle {
+#     ignore_changes = [ user_data ]
+#   }
+# }

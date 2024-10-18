@@ -12,12 +12,13 @@ subnet_az1a                  = "us-east-1a"
 subnet_az1b                  = "us-east-1b"
 subnet_az1c                  = "us-east-1c"
 instance_data = {
-  "classic_auto"   = "t3.micro"
+  "classic_auto"   = "t2.micro"
   "classic_manual" = "t2.micro"
   "quick"          = "t2.micro"
   "multiplayer"    = "t2.micro"
+  # "demo"          = "t2.micro"
 }
-volume_size = 20
+volume_size = 30
 volume_type = "gp3"
 health_check = {
   "timeout"             = "10"
@@ -33,4 +34,5 @@ instance_count = {
   "classic_auto"   = 1
   "quick"          = 1
   "multiplayer"    = 1
+  # "demo"  =1
 }
