@@ -15,7 +15,7 @@ sudo -u ubuntu -i << 'EOF'
 NODE_VERSION="20"
 REPO_URL="https://github.com/yudiz-solutions/Ludo-Naresh-Game-Backend/"  # Replace with your GitHub repository URL
 GITHUB_USERNAME="YudizTaukirKatava"  # Replace with your GitHub username
-GITHUB_TOKEN="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"
+GITHUB_TOKEN="YOUR_GITHUBTOKEN"
 PROJECT_PATH="/home/ubuntu"
 PROJECT_NAME=""  # Leave empty to clone into /home/ubuntu, or specify a project name
 PM2_NAME="classic-auto-mode-stag"
